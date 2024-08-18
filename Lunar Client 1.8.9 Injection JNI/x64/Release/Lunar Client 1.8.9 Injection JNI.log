@@ -1,0 +1,120 @@
+﻿  Minecraft.cpp
+  Player.cpp
+C:\Users\arnol\source\repos\Lunar Client 1.8.9 Injection JNI\Lunar Client 1.8.9 Injection JNI\src\Java.h(25,35): error C2065: 'CMinecraft' : identificateur non déclaré
+  (compiler le fichier source 'src/SDK/Minecraft.cpp')
+  
+C:\Users\arnol\source\repos\Lunar Client 1.8.9 Injection JNI\Lunar Client 1.8.9 Injection JNI\src\Java.h(25,23): error C2672: 'std::make_unique' : fonction correspondante surchargée introuvable
+  (compiler le fichier source 'src/SDK/Minecraft.cpp')
+  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\memory(3444,6):
+  est peut-être 'void std::make_unique(_Types &&...)'
+  	C:\Users\arnol\source\repos\Lunar Client 1.8.9 Injection JNI\Lunar Client 1.8.9 Injection JNI\src\Java.h(25,35):
+  	'std::make_unique' : argument modèle invalide pour '_Ty', type attendu
+  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\memory(3438,57):
+  ou       'std::unique_ptr<_Ty,std::default_delete<_Ty>> std::make_unique(const size_t)'
+  	C:\Users\arnol\source\repos\Lunar Client 1.8.9 Injection JNI\Lunar Client 1.8.9 Injection JNI\src\Java.h(25,35):
+  	'std::make_unique' : argument modèle invalide pour '_Ty', type attendu
+  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\memory(3433,57):
+  ou       'std::unique_ptr<_Ty,std::default_delete<_Ty>> std::make_unique(_Types &&...)'
+  	C:\Users\arnol\source\repos\Lunar Client 1.8.9 Injection JNI\Lunar Client 1.8.9 Injection JNI\src\Java.h(25,35):
+  	'std::make_unique' : argument modèle invalide pour '_Ty', type attendu
+  
+C:\Users\arnol\source\repos\Lunar Client 1.8.9 Injection JNI\Lunar Client 1.8.9 Injection JNI\src\Java.h(25,35): error C2065: 'CMinecraft' : identificateur non déclaré
+  (compiler le fichier source 'src/SDK/Player.cpp')
+  
+C:\Users\arnol\source\repos\Lunar Client 1.8.9 Injection JNI\Lunar Client 1.8.9 Injection JNI\src\Java.h(25,23): error C2672: 'std::make_unique' : fonction correspondante surchargée introuvable
+  (compiler le fichier source 'src/SDK/Player.cpp')
+  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\memory(3444,6):
+  est peut-être 'void std::make_unique(_Types &&...)'
+  	C:\Users\arnol\source\repos\Lunar Client 1.8.9 Injection JNI\Lunar Client 1.8.9 Injection JNI\src\Java.h(25,35):
+  	'std::make_unique' : argument modèle invalide pour '_Ty', type attendu
+  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\memory(3438,57):
+  ou       'std::unique_ptr<_Ty,std::default_delete<_Ty>> std::make_unique(const size_t)'
+  	C:\Users\arnol\source\repos\Lunar Client 1.8.9 Injection JNI\Lunar Client 1.8.9 Injection JNI\src\Java.h(25,35):
+  	'std::make_unique' : argument modèle invalide pour '_Ty', type attendu
+  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\memory(3433,57):
+  ou       'std::unique_ptr<_Ty,std::default_delete<_Ty>> std::make_unique(_Types &&...)'
+  	C:\Users\arnol\source\repos\Lunar Client 1.8.9 Injection JNI\Lunar Client 1.8.9 Injection JNI\src\Java.h(25,35):
+  	'std::make_unique' : argument modèle invalide pour '_Ty', type attendu
+  
+  Java.cpp
+C:\Users\arnol\source\repos\Lunar Client 1.8.9 Injection JNI\Lunar Client 1.8.9 Injection JNI\src\Java.h(25,35): error C2065: 'CMinecraft' : identificateur non déclaré
+  (compiler le fichier source 'src/base/Java.cpp')
+  
+C:\Users\arnol\source\repos\Lunar Client 1.8.9 Injection JNI\Lunar Client 1.8.9 Injection JNI\src\Java.h(25,23): error C2672: 'std::make_unique' : fonction correspondante surchargée introuvable
+  (compiler le fichier source 'src/base/Java.cpp')
+  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\memory(3444,6):
+  est peut-être 'void std::make_unique(_Types &&...)'
+  	C:\Users\arnol\source\repos\Lunar Client 1.8.9 Injection JNI\Lunar Client 1.8.9 Injection JNI\src\Java.h(25,35):
+  	'std::make_unique' : argument modèle invalide pour '_Ty', type attendu
+  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\memory(3438,57):
+  ou       'std::unique_ptr<_Ty,std::default_delete<_Ty>> std::make_unique(const size_t)'
+  	C:\Users\arnol\source\repos\Lunar Client 1.8.9 Injection JNI\Lunar Client 1.8.9 Injection JNI\src\Java.h(25,35):
+  	'std::make_unique' : argument modèle invalide pour '_Ty', type attendu
+  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\memory(3433,57):
+  ou       'std::unique_ptr<_Ty,std::default_delete<_Ty>> std::make_unique(_Types &&...)'
+  	C:\Users\arnol\source\repos\Lunar Client 1.8.9 Injection JNI\Lunar Client 1.8.9 Injection JNI\src\Java.h(25,35):
+  	'std::make_unique' : argument modèle invalide pour '_Ty', type attendu
+  
+  dllmain.cpp
+C:\Users\arnol\source\repos\Lunar Client 1.8.9 Injection JNI\Lunar Client 1.8.9 Injection JNI\src\Java.h(25,35): error C2065: 'CMinecraft' : identificateur non déclaré
+  (compiler le fichier source 'src/base/dllmain.cpp')
+  
+C:\Users\arnol\source\repos\Lunar Client 1.8.9 Injection JNI\Lunar Client 1.8.9 Injection JNI\src\Java.h(25,23): error C2672: 'std::make_unique' : fonction correspondante surchargée introuvable
+  (compiler le fichier source 'src/base/dllmain.cpp')
+  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\memory(3444,6):
+  est peut-être 'void std::make_unique(_Types &&...)'
+  	C:\Users\arnol\source\repos\Lunar Client 1.8.9 Injection JNI\Lunar Client 1.8.9 Injection JNI\src\Java.h(25,35):
+  	'std::make_unique' : argument modèle invalide pour '_Ty', type attendu
+  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\memory(3438,57):
+  ou       'std::unique_ptr<_Ty,std::default_delete<_Ty>> std::make_unique(const size_t)'
+  	C:\Users\arnol\source\repos\Lunar Client 1.8.9 Injection JNI\Lunar Client 1.8.9 Injection JNI\src\Java.h(25,35):
+  	'std::make_unique' : argument modèle invalide pour '_Ty', type attendu
+  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\memory(3433,57):
+  ou       'std::unique_ptr<_Ty,std::default_delete<_Ty>> std::make_unique(_Types &&...)'
+  	C:\Users\arnol\source\repos\Lunar Client 1.8.9 Injection JNI\Lunar Client 1.8.9 Injection JNI\src\Java.h(25,35):
+  	'std::make_unique' : argument modèle invalide pour '_Ty', type attendu
+  
+  init.cpp
+C:\Users\arnol\source\repos\Lunar Client 1.8.9 Injection JNI\Lunar Client 1.8.9 Injection JNI\src\Java.h(25,35): error C2065: 'CMinecraft' : identificateur non déclaré
+  (compiler le fichier source 'src/base/init.cpp')
+  
+C:\Users\arnol\source\repos\Lunar Client 1.8.9 Injection JNI\Lunar Client 1.8.9 Injection JNI\src\Java.h(25,23): error C2672: 'std::make_unique' : fonction correspondante surchargée introuvable
+  (compiler le fichier source 'src/base/init.cpp')
+  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\memory(3444,6):
+  est peut-être 'void std::make_unique(_Types &&...)'
+  	C:\Users\arnol\source\repos\Lunar Client 1.8.9 Injection JNI\Lunar Client 1.8.9 Injection JNI\src\Java.h(25,35):
+  	'std::make_unique' : argument modèle invalide pour '_Ty', type attendu
+  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\memory(3438,57):
+  ou       'std::unique_ptr<_Ty,std::default_delete<_Ty>> std::make_unique(const size_t)'
+  	C:\Users\arnol\source\repos\Lunar Client 1.8.9 Injection JNI\Lunar Client 1.8.9 Injection JNI\src\Java.h(25,35):
+  	'std::make_unique' : argument modèle invalide pour '_Ty', type attendu
+  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\memory(3433,57):
+  ou       'std::unique_ptr<_Ty,std::default_delete<_Ty>> std::make_unique(_Types &&...)'
+  	C:\Users\arnol\source\repos\Lunar Client 1.8.9 Injection JNI\Lunar Client 1.8.9 Injection JNI\src\Java.h(25,35):
+  	'std::make_unique' : argument modèle invalide pour '_Ty', type attendu
+  
+C:\Users\arnol\source\repos\Lunar Client 1.8.9 Injection JNI\Lunar Client 1.8.9 Injection JNI\src\base\init.cpp(30,31): error C3536: 'Minecraft' : ne peut pas être utilisé avant d'avoir été initialisé
+C:\Users\arnol\source\repos\Lunar Client 1.8.9 Injection JNI\Lunar Client 1.8.9 Injection JNI\src\base\init.cpp(30,29): error C2512: 'CPlayer' : aucun constructeur par défaut approprié disponible
+  C:\Users\arnol\source\repos\Lunar Client 1.8.9 Injection JNI\Lunar Client 1.8.9 Injection JNI\src\SDK\Player.h(4,7):
+  voir la déclaration de 'CPlayer'
+  
+  log_reader.cpp
+C:\Users\arnol\source\repos\Lunar Client 1.8.9 Injection JNI\Lunar Client 1.8.9 Injection JNI\src\Java.h(25,35): error C2065: 'CMinecraft' : identificateur non déclaré
+  (compiler le fichier source 'src/base/log_reader.cpp')
+  
+C:\Users\arnol\source\repos\Lunar Client 1.8.9 Injection JNI\Lunar Client 1.8.9 Injection JNI\src\Java.h(25,23): error C2672: 'std::make_unique' : fonction correspondante surchargée introuvable
+  (compiler le fichier source 'src/base/log_reader.cpp')
+  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\memory(3444,6):
+  est peut-être 'void std::make_unique(_Types &&...)'
+  	C:\Users\arnol\source\repos\Lunar Client 1.8.9 Injection JNI\Lunar Client 1.8.9 Injection JNI\src\Java.h(25,35):
+  	'std::make_unique' : argument modèle invalide pour '_Ty', type attendu
+  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\memory(3438,57):
+  ou       'std::unique_ptr<_Ty,std::default_delete<_Ty>> std::make_unique(const size_t)'
+  	C:\Users\arnol\source\repos\Lunar Client 1.8.9 Injection JNI\Lunar Client 1.8.9 Injection JNI\src\Java.h(25,35):
+  	'std::make_unique' : argument modèle invalide pour '_Ty', type attendu
+  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\memory(3433,57):
+  ou       'std::unique_ptr<_Ty,std::default_delete<_Ty>> std::make_unique(_Types &&...)'
+  	C:\Users\arnol\source\repos\Lunar Client 1.8.9 Injection JNI\Lunar Client 1.8.9 Injection JNI\src\Java.h(25,35):
+  	'std::make_unique' : argument modèle invalide pour '_Ty', type attendu
+  
+C:\Users\arnol\source\repos\Lunar Client 1.8.9 Injection JNI\Lunar Client 1.8.9 Injection JNI\src\base\log_reader.cpp(23,13): error C3536: 'Minecraft' : ne peut pas être utilisé avant d'avoir été initialisé
