@@ -22,4 +22,3 @@ private:
 
 extern std::unique_ptr<Lunar> lc;
 
-auto Minecraft = std::make_unique<CMinecraft>();

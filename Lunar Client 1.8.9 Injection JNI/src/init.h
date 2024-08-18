@@ -11,3 +11,4 @@
 #include <shlobj.h>
 
 void init(void* instance);
+std::string getUserPath();

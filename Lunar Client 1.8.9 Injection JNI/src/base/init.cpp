@@ -2,6 +2,9 @@
 
 extern FILE* file;
 
+auto Minecraft = std::make_unique<CMinecraft>();
+
+
 std::string getUserPath() {
     char userPath[MAX_PATH];
     if (SUCCEEDED(SHGetFolderPathA(NULL, CSIDL_PROFILE, NULL, 0, userPath))) {
