@@ -10,7 +10,7 @@ auto /boop friends
 
 ## ⚠️ Warning
 
-This DLL is **not intended to be a cheat**. Apart from the pregame stats in duels, all features are focused on improving quality of life and providing useful information without giving an unfair advantage in gameplay.
+This DLL is **not intended to be a cheat**. All features are focused on improving quality of life and providing useful information without giving an unfair advantage in gameplay.
 
 ## Contributing
 
