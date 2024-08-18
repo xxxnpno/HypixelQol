@@ -8,4 +8,5 @@ public:
     jobject GetInstance();
     CPlayer GetLocalPlayer();
     void SendChatMessage(const std::string& message);
+    void SendPlayerChatMessage(const std::string& message);
 };

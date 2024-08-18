@@ -141,3 +141,47 @@ void CMinecraft::SendChatMessage(const std::string& message) {
     lc->env->DeleteLocalRef(minecraftInstance);
     lc->env->DeleteLocalRef(localPlayer);
 }
+
+
+void CMinecraft::SendPlayerChatMessage(const std::string& message) {
+    jclass minecraftClass = GetClass();
+    if (!minecraftClass) return;
+
+    jobject minecraftInstance = GetInstance();
+    if (!minecraftInstance) return;
+
+    jclass playerClass = lc->GetClass("net.minecraft.client.entity.EntityPlayerSP");
+    if (!playerClass) {
+        std::cerr << "EntityPlayerSP class not found." << std::endl;
+        lc->env->DeleteLocalRef(minecraftInstance);
+        return;
+    }
+
+    jmethodID sendChatMessageMethod = lc->env->GetMethodID(playerClass, "sendChatMessage", "(Ljava/lang/String;)V");
+    if (!sendChatMessageMethod) {
+        std::cerr << "sendChatMessage method not found." << std::endl;
+        lc->env->DeleteLocalRef(minecraftInstance);
+        return;
+    }
+
+    jobject localPlayer = GetLocalPlayer().GetPlayerInstance();
+    if (!localPlayer) {
+        std::cerr << "Local player instance not found." << std::endl;
+        lc->env->DeleteLocalRef(minecraftInstance);
+        return;
+    }
+
+    jstring jmessage = lc->env->NewStringUTF(message.c_str());
+    lc->env->CallVoidMethod(localPlayer, sendChatMessageMethod, jmessage);
+
+    if (lc->env->ExceptionOccurred()) {
+        lc->env->ExceptionDescribe();
+        lc->env->ExceptionClear();
+    }
+
+    lc->env->DeleteLocalRef(jmessage);
+    lc->env->DeleteLocalRef(localPlayer);
+    lc->env->DeleteLocalRef(minecraftInstance);
+}
+
+

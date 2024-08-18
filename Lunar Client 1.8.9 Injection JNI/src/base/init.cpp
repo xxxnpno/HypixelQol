@@ -4,7 +4,6 @@ extern FILE* file;
 
 auto Minecraft = std::make_unique<CMinecraft>();
 
-
 std::string getUserPath() {
     char userPath[MAX_PATH];
     if (SUCCEEDED(SHGetFolderPathA(NULL, CSIDL_PROFILE, NULL, 0, userPath))) {
@@ -37,6 +36,15 @@ void init(void* instance) {
 
         std::string userPath = getUserPath();
         std::string logFilePath = userPath + "\\.lunarclient\\offline\\multiver\\logs\\latest.log";
+
+
+        std::ofstream logFile(logFilePath, std::ios::out | std::ios::trunc);
+        if (!logFile) {
+            std::cerr << "Failed to open log file for truncation." << std::endl;
+        }
+        else {
+            std::cout << "Log file truncated successfully." << std::endl;
+        }
 
         while (!GetAsyncKeyState(VK_DELETE)) {
             readLogFile(logFilePath);
