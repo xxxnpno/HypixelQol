@@ -6,7 +6,7 @@ This project is a DLL designed to enhance the user experience on Hypixel. Curren
 
 ### Features
 
-/boop friend 
+auto /boop friends
 
 ## ⚠️ Warning
 
