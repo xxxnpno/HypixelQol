@@ -32,7 +32,7 @@ void init(void* instance) {
         CPlayer localPlayer = Minecraft->GetLocalPlayer();
         std::string playerName = localPlayer.GetName();
 
-        Minecraft->SendChatMessage("§aYou are playing on : " + playerName);
+        Minecraft->SendChatMessage("§aYou are playing on : " + playerName + " §a" + " §a" + " §a" + " §a" + " §a" + " §a" + " §a");
 
         std::string userPath = getUserPath();
         std::string logFilePath = userPath + "\\.lunarclient\\offline\\multiver\\logs\\latest.log";
