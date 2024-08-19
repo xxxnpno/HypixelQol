@@ -7,6 +7,7 @@ This project is a DLL designed to enhance the user experience on Hypixel. Curren
 ### Features
 
 auto /boop friends
+auto good game with random capital letters
 
 ## ⚠️ Warning
 
