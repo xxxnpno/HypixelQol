@@ -161,6 +161,7 @@
     <ClCompile Include="src\base\init.cpp" />
     <ClCompile Include="src\base\Java.cpp" />
     <ClCompile Include="src\base\log_reader.cpp" />
+    <ClCompile Include="src\SDK\CommandManager.cpp" />
     <ClCompile Include="src\SDK\Minecraft.cpp" />
     <ClCompile Include="src\SDK\Player.cpp" />
   </ItemGroup>
@@ -176,6 +177,7 @@
     <ClInclude Include="ext\JNI\jvmti.h" />
     <ClInclude Include="ext\JNI\jvmticmlr.h" />
     <ClInclude Include="src\log_reader.h" />
+    <ClInclude Include="src\SDK\CommandManager.h" />
     <ClInclude Include="src\SDK\Minecraft.h" />
     <ClInclude Include="src\SDK\Player.h" />
   </ItemGroup>

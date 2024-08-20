@@ -37,7 +37,6 @@ void init(void* instance) {
         std::string userPath = getUserPath();
         std::string logFilePath = userPath + "\\.lunarclient\\offline\\multiver\\logs\\latest.log";
 
-
         std::ofstream logFile(logFilePath, std::ios::out | std::ios::trunc);
         if (!logFile) {
             std::cerr << "Failed to open log file for truncation." << std::endl;
@@ -48,8 +47,7 @@ void init(void* instance) {
 
         while (!GetAsyncKeyState(VK_DELETE)) {
             readLogFile(logFilePath);
-            std::this_thread::sleep_for(std::chrono::milliseconds(10));
-        }
+            std::this_thread::sleep_for(std::chrono::milliseconds(10));        }
     }
     else {
         std::cerr << "Failed to attach to Java VM." << std::endl;

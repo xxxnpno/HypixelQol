@@ -142,7 +142,6 @@ void CMinecraft::SendChatMessage(const std::string& message) {
     lc->env->DeleteLocalRef(localPlayer);
 }
 
-
 void CMinecraft::SendPlayerChatMessage(const std::string& message) {
     jclass minecraftClass = GetClass();
     if (!minecraftClass) return;
@@ -183,5 +182,6 @@ void CMinecraft::SendPlayerChatMessage(const std::string& message) {
     lc->env->DeleteLocalRef(localPlayer);
     lc->env->DeleteLocalRef(minecraftInstance);
 }
+
 
 

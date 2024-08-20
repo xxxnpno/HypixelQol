@@ -1,7 +1,7 @@
 ﻿  log_reader.cpp
 C:\Users\arnol\source\repos\Lunar Client 1.8.9 Injection JNI\Lunar Client 1.8.9 Injection JNI\src\base\log_reader.cpp(21,22): warning C4244: 'return' : conversion de '__int64' en 'int', perte possible de données
   Génération de code en cours
-  1 of 1759 functions (<0.1%) were compiled, the rest were copied from previous compilation.
+  2 of 1759 functions ( 0.1%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
     6 functions had inline decision re-evaluated but remain unchanged
   Fin de la génération du code

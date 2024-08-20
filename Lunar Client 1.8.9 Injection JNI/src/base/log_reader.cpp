@@ -32,11 +32,13 @@ void readLogFile(const std::string& filePath) {
     bool goodGameSent = false;  
 
     std::regex friendJoinPattern(R"(\[CHAT\] (Friend|F) > (\w+) joined\.)");
+
     std::regex winnerPatternDuels(R"(\[CHAT\].*WINNER!)");
     std::regex winnerPatternMurder(R"(\[CHAT\].*Winner)");
     std::regex winnerPatternSkywarsBedwars(R"(\[CHAT\].*Killer)");
     std::regex winnerPatternAB(R"(\[CHAT\].*VICTORY)");
     std::regex winnerPatternTNTRun(R"(\[CHAT\].*Place)");
+    std::regex winnerPatternBSG(R"(\[CHAT\].*Winning)");
 
     while (std::getline(logFile, line)) {
         if (seenLines.find(line) == seenLines.end()) {
@@ -54,7 +56,7 @@ void readLogFile(const std::string& filePath) {
             if (!goodGameSent &&
                 (std::regex_search(line, winnerPatternDuels) || std::regex_search(line, winnerPatternTNTRun) ||
                     std::regex_search(line, winnerPatternAB) || std::regex_search(line, winnerPatternMurder) ||
-                    std::regex_search(line, winnerPatternSkywarsBedwars)) &&
+                    std::regex_search(line, winnerPatternBSG) || std::regex_search(line, winnerPatternSkywarsBedwars)) &&
                 countColons(line) < 4)
             {
                 std::string message = generateRandomCaseMessage("good game");
