@@ -17,9 +17,8 @@ void Lunar::GetLoadedClasses() {
         return;
     }
 
-    jclass* classesPtr;
     jint amount;
-
+    jclass* classesPtr;
     jvmti->GetLoadedClasses(&amount, &classesPtr);
     std::cout << "Number of loaded classes: " << amount << std::endl;
 
@@ -42,11 +41,11 @@ void Lunar::GetLoadedClasses() {
         }
 
         classes.emplace(std::make_pair(std::string(className), classesPtr[i]));
-
         env->ReleaseStringUTFChars(name, className);
         env->DeleteLocalRef(name);
     }
 }
+
 
 jclass Lunar::GetClass(const std::string& className) {
     std::lock_guard<std::mutex> lock(mtx);

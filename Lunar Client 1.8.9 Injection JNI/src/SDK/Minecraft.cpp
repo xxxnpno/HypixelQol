@@ -2,69 +2,68 @@
 #include <iostream>
 
 jclass CMinecraft::GetClass() {
-    jclass cls = lc->GetClass("net.minecraft.client.Minecraft");
-    if (cls) {
+    static jclass minecraftClass = lc->GetClass("net.minecraft.client.Minecraft");
+
+    if (minecraftClass) {
         std::cout << "CMinecraft class obtained successfully." << std::endl;
     }
     else {
         std::cerr << "Failed to obtain CMinecraft class." << std::endl;
     }
-    return cls;
+
+    return minecraftClass;
+}
+
+void HandleException(const std::string& errorMessage) {
+    std::cerr << errorMessage << std::endl;
+    lc->env->ExceptionDescribe();
+    lc->env->ExceptionClear();
 }
 
 jobject CMinecraft::GetInstance() {
     jclass minecraftClass = GetClass();
     if (!minecraftClass) return nullptr;
 
-    jfieldID getMinecraft = lc->env->GetStaticFieldID(minecraftClass, "theMinecraft", "Lnet/minecraft/client/Minecraft;");
+    jfieldID minecraftField = lc->env->GetStaticFieldID(minecraftClass, "theMinecraft", "Lnet/minecraft/client/Minecraft;");
     if (lc->env->ExceptionOccurred()) {
-        std::cerr << "Exception occurred while getting field ID for theMinecraft." << std::endl;
-        lc->env->ExceptionDescribe();
-        lc->env->ExceptionClear();
+        HandleException("Exception occurred while getting field ID for theMinecraft.");
         return nullptr;
     }
 
-    jobject rtrn = lc->env->GetStaticObjectField(minecraftClass, getMinecraft);
+    jobject minecraftInstance = lc->env->GetStaticObjectField(minecraftClass, minecraftField);
     if (lc->env->ExceptionOccurred()) {
-        std::cerr << "Exception occurred while getting static object field for theMinecraft." << std::endl;
-        lc->env->ExceptionDescribe();
-        lc->env->ExceptionClear();
-    }
-    else {
-        std::cout << "Minecraft instance obtained successfully." << std::endl;
+        HandleException("Exception occurred while getting static object field for theMinecraft.");
+        return nullptr;
     }
 
-    return rtrn;
+    std::cout << "Minecraft instance obtained successfully." << std::endl;
+    return minecraftInstance;
 }
 
 CPlayer CMinecraft::GetLocalPlayer() {
     jclass minecraftClass = GetClass();
     if (!minecraftClass) return CPlayer(nullptr);
 
-    jobject minecraftObject = GetInstance();
-    if (!minecraftObject) return CPlayer(nullptr);
+    jobject minecraftInstance = GetInstance();
+    if (!minecraftInstance) return CPlayer(nullptr);
 
-    jfieldID getPlayer = lc->env->GetFieldID(minecraftClass, "thePlayer", "Lnet/minecraft/client/entity/EntityPlayerSP;");
+    jfieldID playerField = lc->env->GetFieldID(minecraftClass, "thePlayer", "Lnet/minecraft/client/entity/EntityPlayerSP;");
     if (lc->env->ExceptionOccurred()) {
-        std::cerr << "Exception occurred while getting field ID for thePlayer." << std::endl;
-        lc->env->ExceptionDescribe();
-        lc->env->ExceptionClear();
-        lc->env->DeleteLocalRef(minecraftObject);
+        HandleException("Exception occurred while getting field ID for thePlayer.");
+        lc->env->DeleteLocalRef(minecraftInstance);
         return CPlayer(nullptr);
     }
 
-    jobject rtrn = lc->env->GetObjectField(minecraftObject, getPlayer);
+    jobject playerInstance = lc->env->GetObjectField(minecraftInstance, playerField);
     if (lc->env->ExceptionOccurred()) {
-        std::cerr << "Exception occurred while getting object field for thePlayer." << std::endl;
-        lc->env->ExceptionDescribe();
-        lc->env->ExceptionClear();
+        HandleException("Exception occurred while getting object field for thePlayer.");
     }
     else {
         std::cout << "Local player instance obtained successfully." << std::endl;
     }
 
-    lc->env->DeleteLocalRef(minecraftObject);
-    return CPlayer(rtrn);
+    lc->env->DeleteLocalRef(minecraftInstance);
+    return CPlayer(playerInstance);
 }
 
 void CMinecraft::SendChatMessage(const std::string& message) {
@@ -109,8 +108,8 @@ void CMinecraft::SendChatMessage(const std::string& message) {
         return;
     }
 
-    jmethodID addChatMessage = lc->env->GetMethodID(playerClass, "addChatComponentMessage", "(Lnet/minecraft/util/IChatComponent;)V");
-    if (!addChatMessage) {
+    jmethodID addChatMessageMethod = lc->env->GetMethodID(playerClass, "addChatComponentMessage", "(Lnet/minecraft/util/IChatComponent;)V");
+    if (!addChatMessageMethod) {
         std::cerr << "addChatComponentMessage method not found." << std::endl;
         lc->env->DeleteLocalRef(chatComponentInstance);
         lc->env->DeleteLocalRef(jmessage);
@@ -129,10 +128,9 @@ void CMinecraft::SendChatMessage(const std::string& message) {
         return;
     }
 
-    lc->env->CallVoidMethod(localPlayer, addChatMessage, chatComponentInstance);
+    lc->env->CallVoidMethod(localPlayer, addChatMessageMethod, chatComponentInstance);
     if (lc->env->ExceptionOccurred()) {
-        lc->env->ExceptionDescribe();
-        lc->env->ExceptionClear();
+        HandleException("Exception occurred while calling addChatComponentMessage.");
     }
 
     lc->env->DeleteLocalRef(jmessage);
@@ -174,14 +172,10 @@ void CMinecraft::SendPlayerChatMessage(const std::string& message) {
     lc->env->CallVoidMethod(localPlayer, sendChatMessageMethod, jmessage);
 
     if (lc->env->ExceptionOccurred()) {
-        lc->env->ExceptionDescribe();
-        lc->env->ExceptionClear();
+        HandleException("Exception occurred while calling sendChatMessage.");
     }
 
     lc->env->DeleteLocalRef(jmessage);
     lc->env->DeleteLocalRef(localPlayer);
     lc->env->DeleteLocalRef(minecraftInstance);
 }
-
-
-

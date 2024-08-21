@@ -1,4 +1,4 @@
-#include "../log_reader.h" 
+#include "../log_reader.h"
 
 std::unordered_set<std::string> seenLines;
 auto Minecraft2 = std::make_unique<CMinecraft>();
@@ -29,39 +29,46 @@ void readLogFile(const std::string& filePath) {
     }
 
     std::string line;
-    bool goodGameSent = false;  
+    bool goodGameSent = false;
 
-    std::regex friendJoinPattern(R"(\[CHAT\] (Friend|F) > (\w+) joined\.)");
 
-    std::regex winnerPatternDuels(R"(\[CHAT\].*WINNER!)");
-    std::regex winnerPatternMurder(R"(\[CHAT\].*Winner)");
-    std::regex winnerPatternSkywarsBedwars(R"(\[CHAT\].*Killer)");
-    std::regex winnerPatternAB(R"(\[CHAT\].*VICTORY)");
-    std::regex winnerPatternTNTRun(R"(\[CHAT\].*Place)");
-    std::regex winnerPatternBSG(R"(\[CHAT\].*Winning)");
+    std::regex winnerPatterns[] = {
+        std::regex(R"(\[CHAT\].*WINNER!)"),
+        std::regex(R"(\[CHAT\].*Winner)"),
+        std::regex(R"(\[CHAT\].*VICTORY)"),
+        std::regex(R"(\[CHAT\].*Winning)"),
+    };
+
+    std::regex winnerPatterns2[] = {
+        std::regex(R"(\[CHAT\].*1st Killer:)"),
+        std::regex(R"(\[CHAT\].*1st Place:)"),
+        std::regex(R"(\[CHAT\].*Winner:)")
+    };
 
     while (std::getline(logFile, line)) {
-        if (seenLines.find(line) == seenLines.end()) {
+        if (seenLines.insert(line).second) {
             std::cout << line << std::endl;
-            seenLines.insert(line);
 
-            std::smatch match;
-            if (std::regex_search(line, match, friendJoinPattern)) {
-                if (match.size() > 2) {
-                    std::string player = match.str(2);
-                    Minecraft2->SendPlayerChatMessage("/boop " + player);
+            if (!goodGameSent && countColons(line) < 4) {
+                for (const auto& pattern : winnerPatterns) {
+                    if (std::regex_search(line, pattern)) {
+                        std::string message = generateRandomCaseMessage("good game");
+                        Minecraft2->SendPlayerChatMessage("/ac " + message);
+                        goodGameSent = true;
+                        break;
+                    }
                 }
             }
 
-            if (!goodGameSent &&
-                (std::regex_search(line, winnerPatternDuels) || std::regex_search(line, winnerPatternTNTRun) ||
-                    std::regex_search(line, winnerPatternAB) || std::regex_search(line, winnerPatternMurder) ||
-                    std::regex_search(line, winnerPatternBSG) || std::regex_search(line, winnerPatternSkywarsBedwars)) &&
-                countColons(line) < 4)
-            {
-                std::string message = generateRandomCaseMessage("good game");
-                Minecraft2->SendPlayerChatMessage("/ac " + message);
-                goodGameSent = true;  
+            if (!goodGameSent) {
+                for (const auto& pattern : winnerPatterns2) {
+                    if (std::regex_search(line, pattern)) {
+                        std::string message = generateRandomCaseMessage("good game");
+                        Minecraft2->SendPlayerChatMessage("/ac " + message);
+                        goodGameSent = true;
+                        break;
+                    }
+                }
             }
         }
     }

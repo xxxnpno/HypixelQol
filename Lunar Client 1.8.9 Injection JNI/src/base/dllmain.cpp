@@ -7,9 +7,7 @@ FILE* file = nullptr;
 BOOL APIENTRY DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserved) {
     DisableThreadLibraryCalls(hModule);
 
-    switch (ul_reason_for_call) {
-    case DLL_PROCESS_ATTACH:
-    {
+    if (ul_reason_for_call == DLL_PROCESS_ATTACH) {
         AllocConsole();
         freopen_s(&file, "CONOUT$", "w", stdout);
         freopen_s(&file, "CONIN$", "r", stdin);
@@ -24,12 +22,6 @@ BOOL APIENTRY DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserv
         }
         std::cout << "Thread created successfully." << std::endl;
         CloseHandle(thread);
-        break;
-    }
-    case DLL_THREAD_ATTACH:
-    case DLL_THREAD_DETACH:
-    case DLL_PROCESS_DETACH:
-        break;
     }
     return TRUE;
 }

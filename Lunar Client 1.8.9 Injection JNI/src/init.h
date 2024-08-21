@@ -6,6 +6,8 @@
 #include <chrono>
 #include <thread>
 #include <string>
+#include <fstream>
+#include <sstream>
 
 #include <Windows.h>
 #include <shlobj.h>
