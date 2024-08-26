@@ -7,6 +7,7 @@ This project is a DLL designed to enhance the user experience on Hypixel. Curren
 ### Features
 
 - auto good game with random capital letters
+- auto "Accuracy" message at the start of Sumo/OP/Boxing/Classic duels to prevent bots
 
 ## ⚠️ Warning
 
