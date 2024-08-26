@@ -1,0 +1,11 @@
+﻿  log_reader.cpp
+C:\Users\arnol\source\repos\Lunar Client 1.8.9 Injection JNI\Lunar Client 1.8.9 Injection JNI\src\base\log_reader.cpp(53,22): warning C4244: 'return' : conversion de '__int64' en 'int', perte possible de données
+C:\Users\arnol\source\repos\Lunar Client 1.8.9 Injection JNI\Lunar Client 1.8.9 Injection JNI\src\base\log_reader.cpp(57,22): warning C4244: 'return' : conversion de '__int64' en 'int', perte possible de données
+  Génération de code en cours
+  5 of 1705 functions ( 0.3%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    2 functions had inline decision re-evaluated but remain unchanged
+  Fin de la génération du code
+  Lunar Client 1.8.9 Injection JNI.vcxproj -> C:\Users\arnol\source\repos\Lunar Client 1.8.9 Injection JNI\x64\Release\Lunar Client 1.8.9 Injection JNI.dll
+  'pwsh.exe' n'est pas reconnu en tant que commande interne
+  ou externe, un programme exécutable ou un fichier de commandes.
