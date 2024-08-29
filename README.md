@@ -1,10 +1,12 @@
-# Hypixel QoL DLL
+# Hypixel QoL DLL 
 
 ## Description
 
 This project is a DLL designed to enhance the user experience on Hypixel. Currently, the DLL only injects into **Lunar Client 1.8.9**, but support for other platforms like **Forge** is planned for the future.
 
 ### Features
+
+Press DELETE to uninject
 
 - auto good game with random capital letters
 - auto "Accuracy" message at the start of Sumo/OP/Boxing/Classic duels to prevent bots
