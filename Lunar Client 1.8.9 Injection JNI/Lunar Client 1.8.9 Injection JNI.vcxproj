@@ -76,7 +76,7 @@
     <IncludePath>$(ProjectDir)\ext\JNI;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>$(ProjectDir)\ext\JNI;$(IncludePath)</IncludePath>
+    <IncludePath>ProjectDir)\ext\ImGui;$(ProjectDir)\ext\JNI;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -143,7 +143,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>$(ProjectDir)include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)ext;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
     </ClCompile>
     <Link>
@@ -152,20 +152,36 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
-      <AdditionalDependencies>$(ProjectDir)\ext\JNI\jvm.lib;Wldap32.Lib;Crypt32.Lib;Ws2_32.Lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>$(ProjectDir)\ext\JNI\jvm.lib;Wldap32.Lib;Crypt32.Lib;Ws2_32.Lib;opengl32.Lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ext\ImGui\imgui.cpp" />
+    <ClCompile Include="ext\ImGui\imgui_demo.cpp" />
+    <ClCompile Include="ext\ImGui\imgui_draw.cpp" />
+    <ClCompile Include="ext\ImGui\imgui_impl_opengl3.cpp" />
+    <ClCompile Include="ext\ImGui\imgui_impl_win32.cpp" />
+    <ClCompile Include="ext\ImGui\imgui_tables.cpp" />
+    <ClCompile Include="ext\ImGui\imgui_widgets.cpp" />
     <ClCompile Include="src\base\dllmain.cpp" />
     <ClCompile Include="src\base\init.cpp" />
     <ClCompile Include="src\base\Java.cpp" />
     <ClCompile Include="src\base\log_reader.cpp" />
-    <ClCompile Include="src\SDK\CommandManager.cpp" />
     <ClCompile Include="src\SDK\Minecraft.cpp" />
     <ClCompile Include="src\SDK\Player.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ext\ImGui\imconfig.h" />
+    <ClInclude Include="ext\ImGui\imgui.h" />
+    <ClInclude Include="ext\ImGui\imgui_impl_opengl2.h" />
+    <ClInclude Include="ext\ImGui\imgui_impl_opengl3.h" />
+    <ClInclude Include="ext\ImGui\imgui_impl_opengl3_loader.h" />
+    <ClInclude Include="ext\ImGui\imgui_impl_win32.h" />
+    <ClInclude Include="ext\ImGui\imgui_internal.h" />
+    <ClInclude Include="ext\ImGui\imstb_rectpack.h" />
+    <ClInclude Include="ext\ImGui\imstb_textedit.h" />
+    <ClInclude Include="ext\ImGui\imstb_truetype.h" />
     <ClInclude Include="src\init.h" />
     <ClInclude Include="src\Java.h" />
     <ClInclude Include="ext\JNI\classfile_constants.h" />
@@ -177,7 +193,6 @@
     <ClInclude Include="ext\JNI\jvmti.h" />
     <ClInclude Include="ext\JNI\jvmticmlr.h" />
     <ClInclude Include="src\log_reader.h" />
-    <ClInclude Include="src\SDK\CommandManager.h" />
     <ClInclude Include="src\SDK\Minecraft.h" />
     <ClInclude Include="src\SDK\Player.h" />
   </ItemGroup>
