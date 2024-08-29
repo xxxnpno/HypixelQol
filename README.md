@@ -10,6 +10,7 @@ Press DELETE to uninject
 
 - auto good game with random capital letters
 - auto "Accuracy" message at the start of Sumo/OP/Boxing/Classic duels to prevent bots
+- auto requeue 
 
 ## ⚠️ Warning
 
