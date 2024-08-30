@@ -121,14 +121,26 @@ void readLogFile(const std::string& filePath) {
         std::regex(R"(\[CHAT\].*Classic Duel)")
     };
 
-    std::regex requeuePatern(R"(Unknown command\. Type \"\/help\" for help\. \('rq'\))");
-    std::regex playerRqPattern(R"(\[CHAT\] \[.*\] .*: \!rq)");
+    std::regex requeuePattern(R"(Unknown command\. Type \"\/help\" for help\. \('rq'\))");
+    std::regex playerRqPattern(R"(\[CHAT\] .*?(\S+): \!rq)");
+    std::smatch matches;
+    bool correct = false;
 
     while (std::getline(logFile, line)) {
         if (seenLines.insert(line).second) {
             std::cout << line << std::endl;
 
-            if (std::regex_search(line, requeuePatern)) { // || std::regex_search(line, playerRqPattern)
+            if (std::regex_search(line, matches, playerRqPattern) && matches.size() > 1) {
+                std::string pseudo = matches[1].str();
+                if (pseudo == Minecraft2->GetLocalPlayer().GetName()) {
+                    correct = true;
+                }
+                else {
+                    correct = false;
+                }
+            }
+
+            if (std::regex_search(line, requeuePattern) || correct) {
                 if (!lastGametype.empty() && !lastMode.empty()) {
                     std::map<std::pair<std::string, std::string>, std::string> commandMap = {
                         {{"ARENA", "1v1"}, "/play arena_1v1"},
@@ -282,7 +294,7 @@ void readLogFile(const std::string& filePath) {
             std::regex jsonMessagePattern(R"(\[CHAT\] \{.*\})");
             std::smatch match;
             if (std::regex_search(line, match, jsonMessagePattern)) {
-                std::string jsonMessage = match.str().substr(7);  
+                std::string jsonMessage = match.str().substr(7);
                 handleGameInfoMessage(jsonMessage);
             }
 

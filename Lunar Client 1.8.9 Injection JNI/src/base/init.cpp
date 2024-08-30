@@ -28,7 +28,7 @@ void init(void* instance) {
         lc->GetLoadedClasses();
 
         Minecraft->SendChatMessage("§aWelcome : " + Minecraft->GetLocalPlayer().GetName() + ", you are playing on : " + Minecraft->GetLocalPlayer().GetPlayerBrand() + "                                   ");
-
+        
         std::string userPath = getUserPath();
         std::string logFilePath = userPath + "\\.lunarclient\\offline\\multiver\\logs\\latest.log";
 
