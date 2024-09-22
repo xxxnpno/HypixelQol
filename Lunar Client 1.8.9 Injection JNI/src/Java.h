@@ -1,11 +1,11 @@
 #pragma once
-#include <../ext/JNI/jni.h>
-#include <../ext/JNI/jvmti.h>
+#include <jni.h>
+#include <jvmti.h>
 #include <mutex>
 #include <unordered_map>
 #include <string>
-#include <iostream>
 #include <memory>
+#include <iostream>
 
 class Lunar {
 public:
@@ -21,4 +21,3 @@ private:
 };
 
 extern std::unique_ptr<Lunar> lc;
-

@@ -11,8 +11,9 @@ Press DELETE to uninject
 - auto good game with random capital letters
 - auto "Accuracy" message at the start of Sumo/OP/Boxing/Classic duels to prevent bots
 - /rq command or type !rq
+- /general command 
 
-## ⚠️ Warning
+## Disclamer
 
 This DLL is **not intended to be a cheat**. All features are focused on improving quality of life and providing useful information without giving an unfair advantage in gameplay.
 

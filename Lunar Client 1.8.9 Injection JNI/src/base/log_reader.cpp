@@ -1,10 +1,16 @@
 #include "../log_reader.h"
+
+#include <nlohmann/json.hpp>
+#include <regex>
+#include <string>
 #include <unordered_set>
 #include <deque>
-#include <algorithm>
 #include <vector>
-#include <regex>
-#include <nlohmann/json.hpp> 
+#include <map>
+#include <iostream>
+#include <fstream>
+#include <random>
+#include <algorithm>
 
 using json = nlohmann::json;
 
@@ -15,7 +21,6 @@ auto Minecraft2 = std::make_unique<CMinecraft>();
 
 std::string lastGametype;
 std::string lastMode;
-
 
 std::vector<std::string> accuracyMessages = {
     "Wow, your Accuracy is so good, it must be the end of the game!",
@@ -87,7 +92,6 @@ void handleGameInfoMessage(const std::string& jsonMessage) {
     }
 }
 
-
 void readLogFile(const std::string& filePath) {
     std::ifstream logFile(filePath);
     if (!logFile.is_open()) {
@@ -126,9 +130,18 @@ void readLogFile(const std::string& filePath) {
     std::smatch matches;
     bool correct = false;
 
+    std::regex swPattern(R"(Unknown command\. Type "help" for help\. \('sw (\w+)'\))");
+    std::regex swPattern2(R"(Unknown command\. Type \"\/help\" for help\. \('sw'\))");
+
+    std::regex bwPattern(R"(Unknown command\. Type "help" for help\. \('bw (\w+)'\))");
+    std::regex bwPattern2(R"(Unknown command\. Type \"\/help\" for help\. \('bw'\))");
+
+    std::regex generalPattern(R"(Unknown command\. Type "help" for help\. \('general (\w+)'\))");
+    std::regex generalPattern2(R"(Unknown command\. Type \"\/help\" for help\. \('general'\))");
+
+
     while (std::getline(logFile, line)) {
         if (seenLines.insert(line).second) {
-            std::cout << line << std::endl;
 
             if (std::regex_search(line, matches, playerRqPattern) && matches.size() > 1) {
                 std::string pseudo = matches[1].str();
@@ -280,7 +293,6 @@ void readLogFile(const std::string& filePath) {
                 }
             }
 
-
             if (counttiretdu6(line) == 0 && countColons(line) < 4) {
                 for (const auto& pattern : accuracyPatern) {
                     if (std::regex_search(line, pattern)) {
@@ -320,6 +332,44 @@ void readLogFile(const std::string& filePath) {
                         break;
                     }
                 }
+            }
+
+            std::string player;
+
+            if (std::regex_search(line, matches, swPattern)) {
+                if (matches.size() > 1) {
+                    player = matches[1].str();
+                    getSwStats(player);
+                }
+            }
+
+            if (std::regex_search(line, matches, swPattern)) {
+                player = Minecraft2->GetLocalPlayer().GetName();
+                getSwStats(player);
+            }
+
+            if (std::regex_search(line, matches, bwPattern)) {
+                if (matches.size() > 1) {
+                    player = matches[1].str();
+                    getBwStats(player);
+                }
+            }
+
+            if (std::regex_search(line, matches, bwPattern)) {
+                player = Minecraft2->GetLocalPlayer().GetName();
+                getBwStats(player);
+            }
+
+            if (std::regex_search(line, matches, generalPattern)) {
+                if (matches.size() > 1) {
+                    player = matches[1].str();
+                    getGeneralStats(player);
+                }
+            }
+
+            if (std::regex_search(line, matches, generalPattern2)) {
+                player = Minecraft2->GetLocalPlayer().GetName();
+                getGeneralStats(player);
             }
         }
     }

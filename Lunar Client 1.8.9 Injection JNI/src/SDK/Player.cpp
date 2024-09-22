@@ -7,9 +7,6 @@ void CPlayer::Cleanup() {
     if (playerInstance) {
         lc->env->DeleteLocalRef(playerInstance);
     }
-    else {
-        std::cerr << "CPlayer instance is null, nothing to clean up." << std::endl;
-    }
 }
 
 jclass CPlayer::GetClass() {
@@ -20,13 +17,11 @@ jclass CPlayer::GetClass() {
 std::string CPlayer::GetName() {
     jclass entityPlayerSPClass = lc->GetClass("net.minecraft.client.entity.EntityPlayerSP");
     if (!entityPlayerSPClass) {
-        std::cerr << "EntityPlayerSP class not found." << std::endl;
         return "";
     }
 
     jmethodID getNameMethod = lc->env->GetMethodID(entityPlayerSPClass, "getName", "()Ljava/lang/String;");
     if (!getNameMethod) {
-        std::cerr << "getName method not found." << std::endl;
         return "";
     }
 
@@ -48,13 +43,11 @@ std::string CPlayer::GetName() {
 std::string CPlayer::GetPlayerBrand() {
     jclass clientBrandRetrieverClass = lc->GetClass("net.minecraft.client.ClientBrandRetriever");
     if (!clientBrandRetrieverClass) {
-        std::cerr << "ClientBrandRetriever class not found." << std::endl;
         return "";
     }
 
     jmethodID getClientModNameMethod = lc->env->GetStaticMethodID(clientBrandRetrieverClass, "getClientModName", "()Ljava/lang/String;");
     if (!getClientModNameMethod) {
-        std::cerr << "getClientModName method not found." << std::endl;
         return "";
     }
 

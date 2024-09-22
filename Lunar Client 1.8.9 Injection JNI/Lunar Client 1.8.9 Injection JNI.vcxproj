@@ -170,6 +170,9 @@
     <ClCompile Include="src\base\log_reader.cpp" />
     <ClCompile Include="src\SDK\Minecraft.cpp" />
     <ClCompile Include="src\SDK\Player.cpp" />
+    <ClCompile Include="src\stats\bw.cpp" />
+    <ClCompile Include="src\stats\general.cpp" />
+    <ClCompile Include="src\stats\sw.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ext\ImGui\imconfig.h" />
@@ -195,8 +198,11 @@
     <ClInclude Include="src\log_reader.h" />
     <ClInclude Include="src\SDK\Minecraft.h" />
     <ClInclude Include="src\SDK\Player.h" />
+    <ClInclude Include="src\stats\bw.h" />
+    <ClInclude Include="src\stats\general.h" />
+    <ClInclude Include="src\stats\link.h" />
+    <ClInclude Include="src\stats\sw.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
-  <ImportGroup Label="ExtensionTargets">
-  </ImportGroup>
+  <ImportGroup Label="ExtensionTargets" />
 </Project>
