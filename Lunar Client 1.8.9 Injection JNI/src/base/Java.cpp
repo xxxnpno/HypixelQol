@@ -1,5 +1,4 @@
 #include "../java.h"
-#include <iostream>
 
 void Lunar::GetLoadedClasses() {
     std::lock_guard<std::mutex> lock(mtx);
@@ -18,7 +17,6 @@ void Lunar::GetLoadedClasses() {
 
     for (jint i = 0; i < classCount; ++i) {
         jstring classNameStr = (jstring)env->CallObjectMethod(classesPtr[i], getNameMethod);
-
 
         const char* classNameCStr = env->GetStringUTFChars(classNameStr, nullptr);
 

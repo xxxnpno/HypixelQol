@@ -136,13 +136,13 @@ void readLogFile(const std::string& filePath) {
     std::regex bwPattern(R"(Unknown command\. Type "help" for help\. \('bw (\w+)'\))");
     std::regex bwPattern2(R"(Unknown command\. Type \"\/help\" for help\. \('bw'\))");
 
-    std::regex generalPattern(R"(Unknown command\. Type "help" for help\. \('general (\w+)'\))");
+    std::regex generalPattern(R"(Unknown command\. Type "/help" for help\. \('general (\w+)'\))");
     std::regex generalPattern2(R"(Unknown command\. Type \"\/help\" for help\. \('general'\))");
 
 
     while (std::getline(logFile, line)) {
         if (seenLines.insert(line).second) {
-
+            //std::cout << line << '\n';
             if (std::regex_search(line, matches, playerRqPattern) && matches.size() > 1) {
                 std::string pseudo = matches[1].str();
                 if (pseudo == Minecraft2->GetLocalPlayer().GetName()) {
@@ -363,6 +363,7 @@ void readLogFile(const std::string& filePath) {
             if (std::regex_search(line, matches, generalPattern)) {
                 if (matches.size() > 1) {
                     player = matches[1].str();
+                    std::cout << "Getting general stats for " << player << "...\n";
                     getGeneralStats(player);
                 }
             }

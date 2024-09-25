@@ -84,3 +84,37 @@ void CMinecraft::SendPlayerChatMessage(const std::string& message) {
     lc->env->DeleteLocalRef(localPlayer);
     lc->env->DeleteLocalRef(minecraftInstance);
 }
+
+void CMinecraft::SendTitleMessage(const std::string& title, const std::string& subtitle, int fadeIn, int stay, int fadeOut) {
+    jclass guiIngameClass = lc->GetClass("net.minecraft.client.gui.GuiIngame");
+    if (!guiIngameClass) return;
+
+    jobject minecraftInstance = GetInstance();
+    if (!minecraftInstance) return;
+
+    jclass minecraftClass = GetClass();
+    jfieldID ingameGuiField = lc->env->GetFieldID(minecraftClass, "ingameGUI", "Lnet/minecraft/client/gui/GuiIngame;");
+    if (!ingameGuiField) return;
+
+    jobject guiIngameInstance = lc->env->GetObjectField(minecraftInstance, ingameGuiField);
+    if (!guiIngameInstance) return;
+
+    jmethodID displayTitleMethod = lc->env->GetMethodID(guiIngameClass, "displayTitle", "(Ljava/lang/String;Ljava/lang/String;III)V");
+    if (!displayTitleMethod) return;
+
+    jstring jTitle = lc->env->NewStringUTF(title.c_str());
+    jstring jSubtitle = lc->env->NewStringUTF(subtitle.c_str());
+
+    lc->env->CallVoidMethod(guiIngameInstance, displayTitleMethod, jTitle, jSubtitle, fadeIn, stay, fadeOut);
+
+    lc->env->DeleteLocalRef(jTitle);
+    lc->env->DeleteLocalRef(jSubtitle);
+    lc->env->DeleteLocalRef(guiIngameInstance);
+    lc->env->DeleteLocalRef(minecraftInstance);
+
+    if (lc->env->ExceptionCheck()) {
+        lc->env->ExceptionDescribe();
+        lc->env->ExceptionClear();
+    }
+}
+

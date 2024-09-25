@@ -172,7 +172,15 @@
     <ClCompile Include="src\SDK\Player.cpp" />
     <ClCompile Include="src\stats\bw.cpp" />
     <ClCompile Include="src\stats\general.cpp" />
+    <ClCompile Include="src\stats\parsing\parse.cpp" />
+    <ClCompile Include="src\stats\qol\toLowerCase.cpp" />
     <ClCompile Include="src\stats\sw.cpp" />
+    <ClCompile Include="src\stats\qol\formatTimestamp.cpp" />
+    <ClCompile Include="src\utils\http\Network.cpp" />
+    <ClCompile Include="src\utils\json\ExtractPlayer.cpp" />
+    <ClCompile Include="src\utils\json\ExtractRank.cpp" />
+    <ClCompile Include="src\utils\json\ExtractSuccess.cpp" />
+    <ClCompile Include="src\utils\path\UserPath.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ext\ImGui\imconfig.h" />
@@ -201,7 +209,15 @@
     <ClInclude Include="src\stats\bw.h" />
     <ClInclude Include="src\stats\general.h" />
     <ClInclude Include="src\stats\link.h" />
+    <ClInclude Include="src\stats\parsing\parse.h" />
+    <ClInclude Include="src\stats\qol\toLowerCase.h" />
     <ClInclude Include="src\stats\sw.h" />
+    <ClInclude Include="src\stats\qol\formatTimestamp.h" />
+    <ClInclude Include="src\utils\http\Network.h" />
+    <ClInclude Include="src\utils\json\ExtractPlayer.h" />
+    <ClInclude Include="src\utils\json\ExtractRank.h" />
+    <ClInclude Include="src\utils\json\ExtractSuccess.h" />
+    <ClInclude Include="src\utils\path\UserPath.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />
