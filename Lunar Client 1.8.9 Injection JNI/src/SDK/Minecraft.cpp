@@ -47,6 +47,7 @@ CPlayer CMinecraft::GetLocalPlayer() {
 }
 
 void CMinecraft::SendChatMessage(const std::string& message) {
+
     jclass chatComponentClass = lc->GetClass("net.minecraft.util.ChatComponentText");
     jmethodID chatComponentConstructor = lc->env->GetMethodID(chatComponentClass, "<init>", "(Ljava/lang/String;)V");
     jstring jmessage = lc->env->NewStringUTF(message.c_str());
@@ -60,13 +61,14 @@ void CMinecraft::SendChatMessage(const std::string& message) {
 
     if (lc->env->ExceptionCheck()) {
         lc->env->ExceptionDescribe();
-        lc->env->ExceptionClear(); 
+        lc->env->ExceptionClear();
     }
 
-    lc->env->DeleteLocalRef(jmessage); 
-    lc->env->DeleteLocalRef(chatComponentInstance); 
-    lc->env->DeleteLocalRef(localPlayer); 
+    lc->env->DeleteLocalRef(jmessage);
+    lc->env->DeleteLocalRef(chatComponentInstance);
+    lc->env->DeleteLocalRef(localPlayer);
 }
+
 
 
 

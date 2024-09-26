@@ -49,6 +49,7 @@ void getGeneralStats(const std::string& player) {
             long long firstLogin = playerData.value("firstLogin", -1ll);
             long long lastLogin = playerData.value("lastLogin", -1ll);
             int karma = playerData.value("karma", -1);
+            int generalQuestMaster = playerData.value("achievements", json::object()).value("general_quest_master", -1);
             double networkExp = playerData.value("networkExp", -1.0);
             std::string newPackageRank = playerData.value("newPackageRank", "N/A");
             std::string monthlyPackageRank = playerData.value("monthlyPackageRank", "N/A");
@@ -102,10 +103,14 @@ void getGeneralStats(const std::string& player) {
             std::cout << "Network Level: " << networkLevel << std::endl;
 
             int totalPoints = 0;
+            int legacyPoints = 0;
             for (const auto& achievement : achievementsList) {
                 std::string lowerAchievement = toLowerCase(achievement);
                 if (achievementPoints.find(lowerAchievement) != achievementPoints.end()) {
-                    totalPoints += achievementPoints[lowerAchievement];
+                    totalPoints += achievementPoints[lowerAchievement].first;
+                    if (achievementPoints[lowerAchievement].second) {
+                        legacyPoints += achievementPoints[lowerAchievement].first;
+                    }
                 }
             }
 
@@ -119,9 +124,12 @@ void getGeneralStats(const std::string& player) {
                     int playerValue = tieredAchievements[achievementID];
                     int cumulativeTierPoints = 0;
 
-                    for (const auto& [tier, points, amount] : tiers) {
+                    for (const auto& [tier, points, amount, isLegacy] : tiers) {
                         if (playerValue >= amount) {
                             cumulativeTierPoints += points;
+                            if (isLegacy) {
+                                legacyPoints += points;
+                            }
                         }
                         else {
                             break;
@@ -135,15 +143,39 @@ void getGeneralStats(const std::string& player) {
 
             totalPoints += totalTieredPoints;
             std::cout << "Total Achievement Points after adding tiered points: " << totalPoints << std::endl;
+            std::cout << "Total Legacy Achievement Points: " << legacyPoints << std::endl;
 
-            // Somme des challenges
             int totalChallenges = sumAllChallenges(uuid);
             std::cout << "Total Challenges Completed: " << totalChallenges << std::endl;
 
             std::stringstream ss;
             ss.imbue(std::locale("en_US.UTF-8"));
+
             ss << karma;
             std::string formatted_karma = ss.str();
+            ss.str("");
+
+            ss << networkLevel;
+            std::string formatted_networkLevel = ss.str();
+            ss.str("");
+
+            ss << totalPoints;
+            std::string formatted_totalPoints = ss.str();
+            ss.str("");
+
+            int legacyTotalPoints = totalPoints - legacyPoints;
+
+            ss << legacyTotalPoints;
+            std::string formatted_legacyTotalPoints = ss.str();
+            ss.str("");
+
+            ss << generalQuestMaster;
+            std::string formatted_generalQuestMaster = ss.str();
+            ss.str("");
+
+            ss << totalChallenges;
+            std::string formatted_totalChallenges = ss.str();
+            ss.str("");
 
             std::string rankDisplay = getRankDisplay(newPackageRank, monthlyPackageRank, rankPlusColor);
 
@@ -151,9 +183,10 @@ void getGeneralStats(const std::string& player) {
                 Minecraft5->SendChatMessage("§e------------------------------------------------");
                 Minecraft5->SendChatMessage("  §aGeneral stats for" + rankDisplay + " " + player + "                  ");
                 Minecraft5->SendChatMessage("");
-                Minecraft5->SendChatMessage("  §eNetwork level: §3" + std::to_string(networkLevel) + "                  ");
-                Minecraft5->SendChatMessage("  §eTotal Achievement Points: §6" + std::to_string(totalPoints) + "                  ");
-                Minecraft5->SendChatMessage("  §eTotal Challenges Completed: §6" + std::to_string(totalChallenges) + "                 ");
+                Minecraft5->SendChatMessage("  §eNetwork level: §3" + formatted_networkLevel + "                  ");
+                Minecraft5->SendChatMessage("  §eTotal Achievement Points: §6" + formatted_legacyTotalPoints + " ("+ formatted_totalPoints + ")                  ");
+                Minecraft5->SendChatMessage("  §eTotal Quests Completed: §2" + formatted_generalQuestMaster + "                 ");
+                Minecraft5->SendChatMessage("  §eTotal Challenges Completed: §2" + formatted_totalChallenges + "                 ");
                 Minecraft5->SendChatMessage("  §eKarma: §d" + formatted_karma + "                  ");
                 Minecraft5->SendChatMessage("  §eFirst login: §a" + formatTimestamp(firstLogin) + "                  ");
                 Minecraft5->SendChatMessage(formatTimestamp(lastLogin) == "N/A" ? "  §eLast login: §aAPI OFF                  " : "  §eLast login: §a" + formatTimestamp(lastLogin) + "                  ");

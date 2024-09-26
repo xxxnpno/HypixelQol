@@ -10,15 +10,10 @@ std::optional<json> fetchJsonFromUrl(const std::string& url) {
     std::string response = performRequest(url);
     try {
         auto jsonResponse = json::parse(response);
-        std::cout << "JSON successfully parsed." << std::endl;
         return jsonResponse;
     }
     catch (const json::parse_error& e) {
-        std::cerr << "JSON parsing error: " << e.what() << std::endl;
-        return std::nullopt;
-    }
-    catch (const std::exception& e) {
-        std::cerr << "General error: " << e.what() << std::endl;
+        std::cout << "JSON parsing error: " << e.what() << std::endl;
         return std::nullopt;
     }
 }
@@ -56,10 +51,10 @@ int sumAllChallenges(const std::string& uuid) {
     return totalChallenges;
 }
 
-std::map<std::string, int> getAchievementsPoints(const std::string& uuid) {
+std::map<std::string, std::pair<int, bool>> getAchievementsPoints(const std::string& uuid) {
     const std::string url = "https://api.hypixel.net/resources/achievements?key=" + getApiKey() + "&uuid=" + uuid;
     std::cout << "Fetching achievements points for UUID: " << uuid << std::endl;
-    std::map<std::string, int> achievementPoints;
+    std::map<std::string, std::pair<int, bool>> achievementPoints;
 
     auto jsonResponseOpt = fetchJsonFromUrl(url);
     if (!jsonResponseOpt.has_value()) {
@@ -74,10 +69,11 @@ std::map<std::string, int> getAchievementsPoints(const std::string& uuid) {
             if (subcategoryMap.contains("one_time")) {
                 for (const auto& [id, achievementData] : subcategoryMap["one_time"].items()) {
                     int points = achievementData.value("points", 0);
+                    bool isLegacy = achievementData.value("legacy", false);
                     std::string lowerId = toLowerCase(id);
                     std::string gameName = toLowerCase(category) + "_" + lowerId;
-                    achievementPoints[gameName] = points;
-                    std::cout << "Achievement: " << gameName << ", Points: " << points << std::endl;
+                    achievementPoints[gameName] = { points, isLegacy };
+                    std::cout << "Achievement: " << gameName << ", Points: " << points << ", Legacy: " << isLegacy << std::endl;
                 }
             }
         }
@@ -89,10 +85,10 @@ std::map<std::string, int> getAchievementsPoints(const std::string& uuid) {
     return achievementPoints;
 }
 
-std::map<std::string, std::vector<std::tuple<int, int, int>>> getTieredAchievements(const std::string& uuid) {
+std::map<std::string, std::vector<std::tuple<int, int, int, bool>>> getTieredAchievements(const std::string& uuid) {
     const std::string url = "https://api.hypixel.net/resources/achievements?key=" + getApiKey();
     std::cout << "Fetching tiered achievements for UUID: " << uuid << std::endl;
-    std::map<std::string, std::vector<std::tuple<int, int, int>>> tieredAchievements;
+    std::map<std::string, std::vector<std::tuple<int, int, int, bool>>> tieredAchievements;
 
     auto jsonResponseOpt = fetchJsonFromUrl(url);
     if (!jsonResponseOpt.has_value()) {
@@ -106,14 +102,15 @@ std::map<std::string, std::vector<std::tuple<int, int, int>>> getTieredAchieveme
         for (const auto& [gameName, subcategory] : achievements.items()) {
             if (subcategory.contains("tiered")) {
                 for (const auto& [achievementID, achievementData] : subcategory["tiered"].items()) {
-                    std::vector<std::tuple<int, int, int>> tiersData;
+                    std::vector<std::tuple<int, int, int, bool>> tiersData;
+                    bool isLegacy = achievementData.value("legacy", false);
                     for (const auto& tierData : achievementData["tiers"]) {
                         int tier = tierData.value("tier", 0);
                         int points = tierData.value("points", 0);
                         int amount = tierData.value("amount", 0);
-                        tiersData.push_back({ tier, points, amount });
+                        tiersData.push_back({ tier, points, amount, isLegacy });
                         std::cout << "Tiered Achievement: " << gameName << "_" << achievementID
-                            << ", Tier: " << tier << ", Points: " << points << ", Amount: " << amount << std::endl;
+                            << ", Tier: " << tier << ", Points: " << points << ", Amount: " << amount << ", Legacy: " << isLegacy << std::endl;
                     }
                     std::string formattedID = toLowerCase(gameName) + "_" + toLowerCase(achievementID);
                     tieredAchievements[formattedID] = tiersData;

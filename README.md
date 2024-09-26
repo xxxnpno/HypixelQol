@@ -12,6 +12,7 @@ Press DELETE to uninject
 - auto "Accuracy" message at the start of Sumo/OP/Boxing/Classic duels to prevent bots
 - /rq command or type !rq
 - /general command 
+![alt text](image.png)
 
 ## Disclamer
 
