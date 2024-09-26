@@ -12,14 +12,13 @@ Press DELETE to uninject
 - auto "Accuracy" message at the start of Sumo/OP/Boxing/Classic duels to prevent bots
 - /rq command or type !rq
 - /general command 
-![alt text](image.png)
 
-## Disclamer
+  ![alt text](image.png)
+
+## Disclaimer
 
 This DLL is **not intended to be a cheat**. All features are focused on improving quality of life and providing useful information without giving an unfair advantage in gameplay.
 
 ## Contributing
 
 Contributions are welcome! If you have ideas, suggestions, or just want to help with development, feel free to submit pull requests or open issues.
-
-
