@@ -43,14 +43,14 @@ void init(void* instance) {
             std::cout << "Player rank: " << rankDisplay << std::endl;
 
             Minecraft->SendChatMessage("§eWelcome" + rankDisplay + " " + Minecraft->GetLocalPlayer().GetName() + "                                   ");
-            Minecraft->SendTitleMessage("§eWelcome" + rankDisplay + " " + Minecraft->GetLocalPlayer().GetName() + "     ", "", 10, 70, 20);
+            //Minecraft->SendTitleMessage("§eWelcome" + rankDisplay + " " + Minecraft->GetLocalPlayer().GetName() + "     ", "", 10, 70, 20);
 
             while (!GetAsyncKeyState(VK_DELETE)) {
                 readLogFile(logFilePath);
                 Sleep(20);
             }
 
-            Minecraft->SendTitleMessage("§eGoodbye" + rankDisplay + " " + Minecraft->GetLocalPlayer().GetName() + "     ", "", 10, 70, 20);
+            //Minecraft->SendTitleMessage("§eGoodbye" + rankDisplay + " " + Minecraft->GetLocalPlayer().GetName() + "     ", "", 10, 70, 20);
             Minecraft->SendChatMessage("§eGoodbye" + rankDisplay + " " + Minecraft->GetLocalPlayer().GetName() + "                                   ");
         }
         else {

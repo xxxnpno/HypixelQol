@@ -130,14 +130,41 @@ void readLogFile(const std::string& filePath) {
     std::smatch matches;
     bool correct = false;
 
-    std::regex swPattern(R"(Unknown command\. Type "help" for help\. \('sw (\w+)'\))");
+    std::regex swPattern(R"(Unknown command\. Type "/help" for help\. \('sw (\w+)'\))");
     std::regex swPattern2(R"(Unknown command\. Type \"\/help\" for help\. \('sw'\))");
 
-    std::regex bwPattern(R"(Unknown command\. Type "help" for help\. \('bw (\w+)'\))");
+    std::regex bwPattern(R"(Unknown command\. Type "/help" for help\. \('bw (\w+)'\))");
     std::regex bwPattern2(R"(Unknown command\. Type \"\/help\" for help\. \('bw'\))");
+
+    std::regex soloBwPattern(R"(Unknown command\. Type "/help" for help\. \('bw1 (\w+)'\))");
+    std::regex soloBwPattern2(R"(Unknown command\. Type \"\/help\" for help\. \('bw1'\))");
+
+    std::regex duoBwPattern(R"(Unknown command\. Type "/help" for help\. \('bw2 (\w+)'\))");
+    std::regex duoBwPattern2(R"(Unknown command\. Type \"\/help\" for help\. \('bw2'\))");
+
+    std::regex trioBwPattern(R"(Unknown command\. Type "/help" for help\. \('bw3 (\w+)'\))");
+    std::regex trioBwPattern2(R"(Unknown command\. Type \"\/help\" for help\. \('bw3'\))");
+
+    std::regex quatuorBwPattern(R"(Unknown command\. Type "/help" for help\. \('bw4 (\w+)'\))");
+    std::regex quatuorBwPattern2(R"(Unknown command\. Type \"\/help\" for help\. \('bw4'\))");
 
     std::regex generalPattern(R"(Unknown command\. Type "/help" for help\. \('general (\w+)'\))");
     std::regex generalPattern2(R"(Unknown command\. Type \"\/help\" for help\. \('general'\))");
+
+    std::regex stalkPattern(R"(Unknown command\. Type "/help" for help\. \('stalk (\w+)'\))");
+    std::regex stalkPattern2(R"(Unknown command\. Type \"\/help\" for help\. \('stalk'\))");
+
+    std::regex arenaBrawlPattern(R"(Unknown command\. Type "/help" for help\. \('arenabrawl (\w+)'\))");
+    std::regex arenaBrawlPattern2(R"(Unknown command\. Type \"\/help\" for help\. \('arenabrawl'\))");
+
+    std::regex soloArenaBrawlPattern(R"(Unknown command\. Type "/help" for help\. \('arenabrawl1 (\w+)'\))");
+    std::regex soloArenaBrawlPattern2(R"(Unknown command\. Type \"\/help\" for help\. \('arenabrawl1'\))");
+
+    std::regex duoArenaBrawlPattern(R"(Unknown command\. Type "/help" for help\. \('arenabrawl2 (\w+)'\))");
+    std::regex duoArenaBrawlPattern2(R"(Unknown command\. Type \"\/help\" for help\. \('arenabrawl2'\))");
+
+    std::regex quatuorArenaBrawlPattern(R"(Unknown command\. Type "/help" for help\. \('arenabrawl4 (\w+)'\))");
+    std::regex quatuorArenaBrawlPattern2(R"(Unknown command\. Type \"\/help\" for help\. \('arenabrawl4'\))");
 
 
     while (std::getline(logFile, line)) {
@@ -343,7 +370,7 @@ void readLogFile(const std::string& filePath) {
                 }
             }
 
-            if (std::regex_search(line, matches, swPattern)) {
+            if (std::regex_search(line, matches, swPattern2)) {
                 player = Minecraft2->GetLocalPlayer().GetName();
                 getSwStats(player);
             }
@@ -355,15 +382,62 @@ void readLogFile(const std::string& filePath) {
                 }
             }
 
-            if (std::regex_search(line, matches, bwPattern)) {
+            if (std::regex_search(line, matches, bwPattern2)) {
                 player = Minecraft2->GetLocalPlayer().GetName();
                 getBwStats(player);
+            }
+
+            if (std::regex_search(line, matches, soloBwPattern)) {
+                if (matches.size() > 1) {
+                    player = matches[1].str();
+                    getSoloBwStats(player);
+                }
+            }
+
+            if (std::regex_search(line, matches, soloBwPattern2)) {
+                player = Minecraft2->GetLocalPlayer().GetName();
+                getSoloBwStats(player);
+            }
+
+            if (std::regex_search(line, matches, duoBwPattern)) {
+                if (matches.size() > 1) {
+                    player = matches[1].str();
+                    getDuoBwStats(player);
+                }
+            }
+
+            if (std::regex_search(line, matches, duoBwPattern2)) {
+                player = Minecraft2->GetLocalPlayer().GetName();
+                getDuoBwStats(player);
+            }
+
+            if (std::regex_search(line, matches, trioBwPattern)) {
+                if (matches.size() > 1) {
+                    player = matches[1].str();
+                    getTrioBwStats(player);
+                }
+            }
+
+            if (std::regex_search(line, matches, trioBwPattern2)) {
+                player = Minecraft2->GetLocalPlayer().GetName();
+                getTrioBwStats(player);
+            }
+
+            if (std::regex_search(line, matches, quatuorBwPattern)) {
+                if (matches.size() > 1) {
+                    player = matches[1].str();
+                    getQuatuorBwStats(player);
+                }
+            }
+
+            if (std::regex_search(line, matches, quatuorBwPattern2)) {
+                player = Minecraft2->GetLocalPlayer().GetName();
+                getQuatuorBwStats(player);
             }
 
             if (std::regex_search(line, matches, generalPattern)) {
                 if (matches.size() > 1) {
                     player = matches[1].str();
-                    std::cout << "Getting general stats for " << player << "...\n";
                     getGeneralStats(player);
                 }
             }
@@ -371,6 +445,66 @@ void readLogFile(const std::string& filePath) {
             if (std::regex_search(line, matches, generalPattern2)) {
                 player = Minecraft2->GetLocalPlayer().GetName();
                 getGeneralStats(player);
+            }
+
+            if (std::regex_search(line, matches, stalkPattern)) {
+                if (matches.size() > 1) {
+                    player = matches[1].str();
+                    stalk(player);
+                }
+            }
+
+            if (std::regex_search(line, matches, stalkPattern2)) {
+                player = Minecraft2->GetLocalPlayer().GetName();
+                stalk(player);
+            }
+
+            if (std::regex_search(line, matches, arenaBrawlPattern)) {
+                if (matches.size() > 1) {
+                    player = matches[1].str();
+                    getArenaBrawlStats(player);
+                }
+            }
+
+            if (std::regex_search(line, matches, arenaBrawlPattern2)) {
+                player = Minecraft2->GetLocalPlayer().GetName();
+                getArenaBrawlStats(player);
+            }
+
+            if (std::regex_search(line, matches, soloArenaBrawlPattern)) {
+                if (matches.size() > 1) {
+                    player = matches[1].str();
+                    get1v1ArenaBrawlStats(player);
+                }
+            }
+
+            if (std::regex_search(line, matches, soloArenaBrawlPattern2)) {
+                player = Minecraft2->GetLocalPlayer().GetName();
+                get1v1ArenaBrawlStats(player);
+            }
+
+            if (std::regex_search(line, matches, duoArenaBrawlPattern)) {
+                if (matches.size() > 1) {
+                    player = matches[1].str();
+                    get2v2ArenaBrawlStats(player);
+                }
+            }
+
+            if (std::regex_search(line, matches, duoArenaBrawlPattern2)) {
+                player = Minecraft2->GetLocalPlayer().GetName();
+                get2v2ArenaBrawlStats(player);
+            }
+
+            if (std::regex_search(line, matches, quatuorArenaBrawlPattern)) {
+                if (matches.size() > 1) {
+                    player = matches[1].str();
+                    get4v4ArenaBrawlStats(player);
+                }
+            }
+
+            if (std::regex_search(line, matches, quatuorArenaBrawlPattern2)) {
+                player = Minecraft2->GetLocalPlayer().GetName();
+                get4v4ArenaBrawlStats(player);
             }
         }
     }

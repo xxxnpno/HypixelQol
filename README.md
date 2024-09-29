@@ -11,7 +11,7 @@ Press DELETE to uninject
 - auto good game with random capital letters
 - auto "Accuracy" message at the start of Sumo/OP/Boxing/Classic duels to prevent bots
 - /rq command or type !rq
-- /general command 
+- /general, /stalk, /sw, /bw /bw1, /bw2, /bw3, /bw4, /arenabrawl, /arenabrawl1, /arenabrawl2, /arenabrawl4 command 
 
   ![alt text](image.png)
 

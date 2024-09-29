@@ -170,10 +170,12 @@
     <ClCompile Include="src\base\log_reader.cpp" />
     <ClCompile Include="src\SDK\Minecraft.cpp" />
     <ClCompile Include="src\SDK\Player.cpp" />
+    <ClCompile Include="src\stats\arenabrawl.cpp" />
     <ClCompile Include="src\stats\bw.cpp" />
     <ClCompile Include="src\stats\general.cpp" />
     <ClCompile Include="src\stats\parsing\parse.cpp" />
     <ClCompile Include="src\stats\qol\toLowerCase.cpp" />
+    <ClCompile Include="src\stats\stalk.cpp" />
     <ClCompile Include="src\stats\sw.cpp" />
     <ClCompile Include="src\stats\qol\formatTimestamp.cpp" />
     <ClCompile Include="src\utils\http\Network.cpp" />
@@ -206,11 +208,13 @@
     <ClInclude Include="src\log_reader.h" />
     <ClInclude Include="src\SDK\Minecraft.h" />
     <ClInclude Include="src\SDK\Player.h" />
+    <ClInclude Include="src\stats\arenabrawl.h" />
     <ClInclude Include="src\stats\bw.h" />
     <ClInclude Include="src\stats\general.h" />
     <ClInclude Include="src\stats\link.h" />
     <ClInclude Include="src\stats\parsing\parse.h" />
     <ClInclude Include="src\stats\qol\toLowerCase.h" />
+    <ClInclude Include="src\stats\stalk.h" />
     <ClInclude Include="src\stats\sw.h" />
     <ClInclude Include="src\stats\qol\formatTimestamp.h" />
     <ClInclude Include="src\utils\http\Network.h" />
